@@ -1,15 +1,20 @@
 #include <iostream>
 #include <string.h>
-#include <math.h>
-#include <iomanip>
 using namespace std;
 
+                            // Bài tập 1
 int main()
 {
-    string s;
-    getline(cin, s);
-    for (int i = s.length() - 1; i >= 0; i--)
+    int n; cin >> n;
+    int a[n]; for (int &x : a) cin >> x;
+
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
     {
-        cout << s[i];
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[i] == a[j]) cnt++;
+        }
     }
+    cout << cnt;
 }

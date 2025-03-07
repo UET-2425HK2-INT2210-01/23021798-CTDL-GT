@@ -1,22 +1,79 @@
 #include <iostream>
 #include <string.h>
-#include <math.h>
-#include <iomanip>
 using namespace std;
+
+struct Node {
+    int data;
+    Node * next;
+};
+
+class queue {
+    public:    
+    Node * head;
+    int size = 0;
+
+        queue() : head(NULL) {}
+
+        void push(int x)
+        {
+            Node * newNode = new Node;
+            newNode->data = x;
+            if(head == NULL)
+            {
+                newNode->next = head;
+                head = newNode;
+            }
+            else
+            {
+                Node* loop = head;
+                while(loop->next != NULL)
+                {
+                    loop = loop->next;
+                }
+                loop->next = newNode;
+                newNode->next = NULL;
+            }
+            size++;
+        }
+
+        void pop()
+        {
+            if (head != NULL)
+            {
+                Node* trash = head;
+                head = head->next;
+                delete trash;
+                size--;
+            }
+        }
+
+        void print()
+        {
+            Node * loop = head;
+            while(loop != NULL)
+            {
+                cout << loop->data << " ";
+                loop = loop->next;
+            }
+        }
+};
 
 int main()
 {
-    int n;
-    cin >> n;
-    int a[n];
-    for (int &x : a) cin >> x;
-    for (int i = 0; i < n - 1; i++)
+    queue q;
+    int n; cin >> n;
+    while(n--)
     {
-        for (int j = 0; j < n - i - 1; j++)
+        string s; cin >> s;
+        if (s.compare("enqueue") == 0)
         {
-            if (a[j] > a[j + 1]) swap (a[j], a[j + 1]);
+            int x; cin >> x;
+            q.push(x);
+        }
+        else if (s.compare("dequeue") == 0)
+        {
+            q.pop();
         }
     }
-
-    for (int x : a) cout << x << " ";
+    q.print();
 }
