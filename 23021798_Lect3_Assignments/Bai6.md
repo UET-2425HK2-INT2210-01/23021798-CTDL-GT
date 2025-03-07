@@ -8,25 +8,36 @@ class stack:
     size = 0
 
     function push(x):
-        node * newnode = new node
-        newnode.data = x
-        newnode.next = top
-        top = newnode
-        size = size + 1
+        Node* newNode = new Node
+        newNode.data = x
+        newNode.next = NULL
+
+        if top == NULL: top = newNode
+        else:
+            Node* loop = top
+            while loop.next != NULL: loop = loop.next
+
+            loop.next = newNode
+        
+        size++
     end
 
     function pop():
-        if top == NULL:
+        if top == NULL
             return
 
-        temp = top
-        top = top.next
-        delete temp
-        size = size - 1
+        Node* loop = top;
+        for i from 1 to size - 2
+            loop =  loop.next
+        
+        Node* trash = loop.next
+        loop.next = NULL
+        delete trash
+        size--
     end
 
     function print():
-    if top == nULL:
+    if top == NULL:
         return
 
     Node * current = top
@@ -38,8 +49,8 @@ end
 
 Nhận xét:
 - Khởi tạo: O(1)
-- Thêm phần tử: O(1)
-- Xóa phần tử: O(1)
+- Thêm phần tử: O(n)
+- Xóa phần tử: O(n)
 - In tất cả phần tử: O(n)
 
 

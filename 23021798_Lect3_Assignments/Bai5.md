@@ -33,7 +33,7 @@ class queue:
         if top == -1:
             return
 
-        For i from top to 0:
+        For i from 0 to top:
             Print arr[i]
     end
 end
